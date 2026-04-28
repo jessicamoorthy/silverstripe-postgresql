@@ -4,11 +4,11 @@ namespace SilverStripe\PostgreSQL;
 
 use SilverStripe\Core\Config\Configurable;
 use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Model\List\ArrayList;
+use SilverStripe\Model\List\PaginatedList;
 use SilverStripe\ORM\DB;
 use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\Connect\Database;
-use SilverStripe\ORM\PaginatedList;
 use ErrorException;
 use Exception;
 
