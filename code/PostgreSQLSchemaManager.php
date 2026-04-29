@@ -782,22 +782,22 @@ class PostgreSQLSchemaManager extends DBSchemaManager
                 break;
 
             case 'unique':
-                $spec = "create unique index \"$tableCol\" ON \"$tableName\" (" . $this->implodeColumnList($indexSpec['columns']) . ") $fillfactor $where";
+                $spec = "create unique index \"$tableCol\" ON \"$tableName\" (" . $this->implodeIndexColumnList($indexSpec['columns'], $indexSpec['type']) . ") $fillfactor $where";
                 break;
 
             case 'btree':
-                $spec = "create index \"$tableCol\" ON \"$tableName\" USING btree (" . $this->implodeColumnList($indexSpec['columns']) . ") $fillfactor $where";
+                $spec = "create index \"$tableCol\" ON \"$tableName\" USING btree (" . $this->implodeIndexColumnList($indexSpec['columns'], $indexSpec['type']) . ") $fillfactor $where";
                 break;
 
             case 'hash':
                 //NOTE: this is not a recommended index type
-                $spec = "create index \"$tableCol\" ON \"$tableName\" USING hash (" . $this->implodeColumnList($indexSpec['columns']) . ") $fillfactor $where";
+                $spec = "create index \"$tableCol\" ON \"$tableName\" USING hash (" . $this->implodeIndexColumnList($indexSpec['columns'], $indexSpec['type']) . ") $fillfactor $where";
                 break;
 
             case 'index':
                 //'index' is the same as default, just a normal index with the default type decided by the database.
             default:
-                $spec = "create index \"$tableCol\" ON \"$tableName\" (" . $this->implodeColumnList($indexSpec['columns']) . ") $fillfactor $where";
+                $spec = "create index \"$tableCol\" ON \"$tableName\" (" . $this->implodeIndexColumnList($indexSpec['columns'], $indexSpec['type']) . ") $fillfactor $where";
         }
         return trim($spec) . ';';
     }
